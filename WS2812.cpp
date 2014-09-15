@@ -304,7 +304,7 @@ void WS2812::rainbowCycle(uint8_t time)
 {
 #if (PIXEL_MODE == MODE_MASTER)
     uint16_t i, j;
-    for(j = 0; j < 256*5; j++) { // 5 cycles of all colors on wheel
+    for(j = 0; j < 256*5; j++) {
         for(i = 0; i < numLeds(); i++) {
             setRGB(i, Wheel(((i * 256 / numLeds()) + j) & 255));
         }
@@ -322,15 +322,15 @@ void WS2812::rainbowCycle(uint8_t time)
 void WS2812::theaterChase(uint32_t px_value, uint8_t time) 
 {
 #if (PIXEL_MODE == MODE_MASTER)
-    for (int j = 0; j < 10; j++) {  //do 10 cycles of chasing
+    for (int j = 0; j < 10; j++) {
         for (int q = 0; q < 3; q++) {
             for (int i = 0; i < numLeds(); i = i+3) {
-                setRGB(i+q, px_value);    //turn every third pixel on
+                setRGB(i+q, px_value); 
             }
             sync();
             delay(time);
             for (int i = 0; i < numLeds(); i = i+3) {
-                setRGB(i+q, 0);        //turn every third pixel off
+                setRGB(i+q, 0);
             }
         }
     }
@@ -345,15 +345,15 @@ void WS2812::theaterChase(uint32_t px_value, uint8_t time)
 void WS2812::theaterChaseRainbow(uint8_t time) 
 {
 #if (PIXEL_MODE == MODE_MASTER)
-    for (int j = 0; j < 256; j++) {     // cycle all 256 colors in the wheel
+    for (int j = 0; j < 256; j++) {
         for (int q = 0; q < 3; q++) {
             for (int i = 0; i < numLeds(); i=i+3) {
-                setRGB(i+q, Wheel( (i+j) % 255));    //turn every third pixel on
+                setRGB(i+q, Wheel( (i+j) % 255));
             }
             sync();
             delay(time);
             for (int i = 0; i < numLeds(); i = i+3) {
-                setRGB(i+q, 0);        //turn every third pixel off
+                setRGB(i+q, 0); 
             }
         }
     }
